@@ -1,0 +1,3 @@
+rootProject.name = 'SpotiPiCompanion'
+
+include ':app'
