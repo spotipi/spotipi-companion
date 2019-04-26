@@ -6,3 +6,4 @@ npm-debug.*
 *.key
 *.mobileprovision
 secret.js
+android/app/build
