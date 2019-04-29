@@ -1,4 +1,0 @@
-#Sun Apr 14 13:53:13 EDT 2019
-base.0=/home/gshaw/Documents/Projects/COSC439/SpotiPi/spotipi-companion/android/app/build/intermediates/transforms/dexMerger/debug/0
-renamed.0=classes.dex
-path.0=classes.dex
