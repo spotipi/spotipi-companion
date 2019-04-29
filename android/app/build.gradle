@@ -138,6 +138,9 @@ android {
 }
 
 dependencies {
+    implementation project(':rn-spotify-sdk')
+    implementation project(':react-native-events')
+    implementation project(':react-native-ble-manager')
     implementation project(':react-native-ble-plx')
     compile project(':react-native-ble-plx')
     implementation fileTree(dir: "libs", include: ["*.jar"])

@@ -1,25 +1,15 @@
-import { BleManager } from 'react-native-ble-plx';
+import {
+    NativeEventEmitter, // for emitting events for the BLE manager
+    NativeModules, // for getting an instance of the BLE manager module
+} from 'react-native';
 
-export const BluetoothManager = new BleManager();
+import BleManager from 'react-native-ble-manager'; // for talking to BLE peripherals
+const BleManagerModule = NativeModules.BleManager;
+const bleManagerEmitter = new NativeEventEmitter(BleManagerModule); // create an event emitter for the BLE Manager module
 
 
-export function scanAndConnect(deviceName) {
-    BluetoothManager.startDeviceScan(null, null, (error, device) => {
-        if (error) {
-            alert(error)
-            // Handle error (scanning will be stopped automatically)
-            return
-        }
-
-        // Check if it is a device you are looking for based on advertisement data
-        // or other criteria.
-        alert(device)
-        if (device.name === deviceName) {
-
-            // Stop scanning as it's not necessary if you are scanning for one device.
-            BluetoothManager.stopDeviceScan();
-
-            // Proceed with connection.
-        }
-    });
+export const Bluetooth = {
+    manager: BleManager,
+    module: BleManagerModule,
+    emitter: bleManagerEmitter
 }
