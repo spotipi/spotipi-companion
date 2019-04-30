@@ -3,7 +3,8 @@ package com.spotipicompanion;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.spotify.sdk.android.authentication.RNSpotifyPackage;
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+import com.lufinkey.react.spotify.RNSpotifyPackage;
 import com.lufinkey.react.eventemitter.RNEventEmitterPackage;
 import it.innove.BleManagerPackage;
 import com.polidea.reactnativeble.BlePackage;
@@ -25,13 +26,8 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-            new RNSpotifyPackage(),
-            new RNEventEmitterPackage(),
-            new BleManagerPackage(),
-            new BlePackage()
-      );
+      return Arrays.<ReactPackage>asList(new MainReactPackage(), new RNGestureHandlerPackage(), new RNSpotifyPackage(),
+          new RNEventEmitterPackage(), new BleManagerPackage(), new BlePackage());
     }
 
     @Override
