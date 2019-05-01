@@ -12,7 +12,6 @@ import { Bluetooth } from './bluetooth-manager'
 import { stringToBytes } from 'convert-string'; // for converting string to byte array
 import bytesCounter from 'bytes-counter'; // for getting the number of bytes in a string
 
-import Spotify from 'rn-spotify-sdk';
 
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',

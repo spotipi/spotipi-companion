@@ -11,11 +11,13 @@
     "convert-string": "^0.1.0",
     "react": "16.8.3",
     "react-native": "0.59.3",
+    "react-native-base64": "0.0.2",
     "react-native-ble-manager": "^6.6.2",
     "react-native-ble-plx": "^1.0.3",
     "react-native-gesture-handler": "^1.2.0",
     "react-navigation": "^3.9.1",
-    "rn-spotify-sdk": "^1.2.7"
+    "rn-spotify-sdk": "^1.2.7",
+    "utf8": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",
