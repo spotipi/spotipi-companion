@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { View, Button, Text } from 'react-native';
+import { View, Button, Text, ToastAndroid } from 'react-native';
 import { styles } from './sync.styles'
 import { connect } from 'react-redux';
 import { Bluetooth } from '../../bluetooth-manager'
@@ -40,7 +40,10 @@ class Sync extends React.Component {
         const subscription = Bluetooth.manager.onStateChange((state) => {
             console.log('TCL: Sync -> subToBluetoothState -> state', state);
             if (state === 'PoweredOn') {
-                this.scanAndConnect();
+                this.scanAndConnect().catch(e => {
+                    console.log('TCL: Sync -> subToBluetoothState -> e ', e);
+                    ToastAndroid.show('Could not connect to SpotiPi', ToastAndroid.SHORT);
+                });
                 subscription.remove();
             }
         }, true);
@@ -102,6 +105,7 @@ class Sync extends React.Component {
     }
 
     async sendAlarmData() {
+        ToastAndroid.show('Syncing with SpotiPi device...', ToastAndroid.SHORT);
         const device = this.state.connected_peripheral;
         if (!device || (device && !await device.isConnected())) {
             try {
@@ -120,8 +124,13 @@ class Sync extends React.Component {
 
             const primary_service_uuid = PERIPHERAL_ID + PRIMARY_SERVICE_ID + BASE_UUID;
             const ps_characteristic_uuid = PERIPHERAL_ID + '0300' + BASE_UUID; // the characteristic ID to write on
+            try {
+                await device.writeCharacteristicWithResponseForService(primary_service_uuid, ps_characteristic_uuid, encoded, '1')
+                ToastAndroid.show('Alarm set!', ToastAndroid.SHORT);
+            } catch (e) {
+                ToastAndroid.show('Problem setting alarm.', ToastAndroid.SHORT);
+            }
 
-            return device.writeCharacteristicWithResponseForService(primary_service_uuid, ps_characteristic_uuid, encoded, '1')
         }
 
     }
